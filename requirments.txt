@@ -1,0 +1,5 @@
+streamlit
+numpy
+roboflow
+pillow
+supervision
