@@ -1,5 +1,5 @@
 streamlit
 numpy
-roboflow
+roboflow==0.2.20
 pillow
 supervision
