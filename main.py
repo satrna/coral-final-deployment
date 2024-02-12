@@ -5,6 +5,7 @@ from utils.roboflow_utils import predict_image
 import supervision as sv
 import numpy as np
 
+
 # Title
 st.title('Coral Image Prediction')
 
@@ -23,7 +24,7 @@ predict_button = st.button("Predict")
 reset_button = st.button("Reset", type="primary")
 
 # label placeholder
-labels = []
+labels = None
 
 # Image Prediction Output
 st.subheader('Coral Detection Output')
@@ -33,7 +34,7 @@ if predict_button:
             f.write(uploaded_file.getbuffer())
 
         result = predict_image(uploaded_file.name, confidence, overlap)
-        labels = [item["class"] for item in result["predictions"]]
+        labels = {item["class"] for item in result["predictions"]}
 
         detections = sv.Detections.from_roboflow(result)
         label_annotator = sv.LabelAnnotator()
@@ -58,7 +59,7 @@ if reset_button:
 
 # Text Inference From LLM About the Image
 st.subheader('Coral Prediction Information')
-if labels != []:
-    st.write(labels)
+if labels != {}:
+    st.write(set(labels))
 else:
     st.write("No Coral Detected")

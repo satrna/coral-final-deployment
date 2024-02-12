@@ -3,3 +3,6 @@ roboflow
 numpy
 pillow
 supervision
+langchain
+langchain-core
+langchain-google-vertexai
